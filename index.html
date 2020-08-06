@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <title>Random Quote Generator for Black Activists</title>
+        <script>
+            const QUOTEBANK = [
+                {
+                    quote: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
+                    author: "Martin Luther King, Jr."
+                },
+                {
+                    quote: "The future belongs to those who prepare for it today.",
+                    author: "Malcolm X"
+                },
+                {
+                    quote: "You are a light. You are the light. Never let anyone — any person or any force — dampen, dim or diminish your light … Release the need to hate, to harbor division, and the enticement of revenge. Release all bitterness. Hold only love, only peace in your heart, knowing that the battle of good to overcome evil is already won.",
+                    author: "John Lewis"
+                }
+            ];
+
+            window.onload = init;
+            function init() {
+                generateQuote();
+            }
+
+            function generateQuote() {
+                let quoteSize = QUOTEBANK.length;
+                let randomIndex = Math.floor(Math.random() * quoteSize);
+                let randomQuoteData = QUOTEBANK[randomIndex];
+
+                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp&text="
+                
+                //adding quote
+                let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+                twitterLink += quoteInApiFormat
+                //adding author
+                let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+                twitterLink += " - " + authorInApiFormat
+
+                document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuoteData.quote;
+                document.getElementById("author").innerText = randomQuoteData.author;
+            }
+        </script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-8 offset-md-2"></div>
+                    <wrapper id="quote-box">
+                        <div class="card">
+                            <div class="card-header text-center">Random Quote Machine</div>
+                            <div class="card-body">
+                            <h5 class="card-title"><div id="text"></div></h5>
+                            <p class="card-text"><div id="author"></div></p>
+                            <button id="new-quote" onClick="generateQuote()" class="btn btn-success">New Quote</button>
+                                <a href="" id="tweet-quote" class="btn btn-primary" target="_blank">Tweet Quote</a>
+                            </div>
+                        </div>  
+                    </wrapper>
+                </div>
+            </div>
+        </div>  
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        
+    </body>
+</html>
